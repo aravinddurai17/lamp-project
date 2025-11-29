@@ -1,0 +1,36 @@
+---
+- name: Install and Configure LAMP Stack
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update packages
+      apt:
+        update_cache: yes
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Install MySQL
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Install PHP
+      apt:
+        name:
+          - php
+          - php-mysql
+        state: present
+
+    - name: Deploy Website
+      copy:
+        content: "<h1>Deployment Success: Jenkins + Terraform + Ansible</h1>"
+        dest: /var/www/html/index.html
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
