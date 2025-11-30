@@ -2,8 +2,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_security_group" "lamp_sg" {
-  name = "lamp-sg"
+resource "aws_security_group" "lamp_test_sg" {
+  name = "lamp-test-sg"
 
   ingress {
     from_port   = 22
@@ -32,7 +32,7 @@ resource "aws_instance" "lamp" {
   instance_type = var.instance_type
   key_name      = "lamp"
 
-  security_groups = [aws_security_group.lamp_sg.name]
+  security_groups = [aws_security_group.lamp_test_sg.name]
 
   tags = {
     Name = "LAMP-Server"
