@@ -1,5 +1,5 @@
 pipeline {
-    agent slave
+    agent { label 'slave' }
 
     environment {
         AWS_CREDS = credentials('aws-creds')
